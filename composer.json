@@ -27,6 +27,7 @@
     },
     "require-dev": {
         "ghianco/sophy-generator": "*",
+        "pestphp/pest": "^1.7",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.5.11"
     },

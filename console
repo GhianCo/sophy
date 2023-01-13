@@ -6,5 +6,5 @@ use Symfony\Component\Console\Application;
 require __DIR__ . '/index.php';
 
 $application = new Application();
-$application->add(new App\Factory\SophyGeneratorCommand($app));
+$application->add(new SophyGenerator\Factory\SophyGeneratorCommand($app));
 $application->run();

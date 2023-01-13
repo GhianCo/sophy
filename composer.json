@@ -31,9 +31,7 @@
         "phpunit/phpunit": "^9.5.11"
     },
     "config": {
-        "platform-check": false,
-        "process-timeout": 0,
-        "sort-packages": true
+        "platform-check": false
     },
     "autoload": {
         "psr-4": {

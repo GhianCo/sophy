@@ -4,7 +4,7 @@ echo <<<EOF
 
 \033[32mProyecto creado con exito!\033[37m
 
-Ejecuta los siguientes comandass:
+Ejecuta los siguientes comandas:
 
 $ cd [path-project]
 

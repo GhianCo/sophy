@@ -1,0 +1,51 @@
+{
+    "name": "sophy/boilerplate",
+    "description": "Services with Slim and PHP.",
+    "keywords": [
+        "php",
+        "microservices",
+        "slim",
+        "api",
+        "router"
+    ],
+    "homepage": "http://www.sophy-framework.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sophy and contributors",
+            "email": "developer@sophy-framework.com",
+            "homepage": "https://github.com/sophy/contributors"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php-di/php-di": "^6.3",
+        "slim/psr7": "^1.5",
+        "slim/slim": "^4.9",
+        "firebase/php-jwt": "^5.0",
+        "vlucas/phpdotenv": "^5.1"
+    },
+    "require-dev": {
+        "ghianco/sophy-generator": "*",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.5.11"
+    },
+    "config": {
+        "platform-check": false,
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Sophy\\": "src/",
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "php -r \"copy('.env.example', '.env');\"",
+            "php post-create-project-command.php"
+        ],
+        "test": "phpunit"
+    }
+}

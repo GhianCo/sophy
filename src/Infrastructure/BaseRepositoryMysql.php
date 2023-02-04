@@ -294,13 +294,21 @@ abstract class BaseRepositoryMysql implements BaseRepository
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $total = $result->fetch()["foundRows"];
 
+            $startIndex = (($this->getPage() - 1) * $this->getPerPage()) + 1;
+            $endIndex = min(($this->getPerPage() * $this->getPage()), $total);
+            $totalPages = ceil($total / ($this->getPerPage() > 0 ? $this->getPerPage() : 1));
+
             return [
                 'data' => $statement->fetchAll(),
                 'pagination' => [
                     'totalRows' => $total,
-                    'totalPages' => ceil($total / ($this->getPerPage() > 0 ? $this->getPerPage() : 1)),
+                    'totalPages' => $totalPages,
                     'currentPage' => $this->getPage(),
                     'perPage' => $this->getPerPage(),
+                    'startIndex' => $startIndex,
+                    'endIndex' => $endIndex,
+                    'hasRowsToLeft' => $startIndex === 1,
+                    'hasRowsToRight' => $endIndex === $total
                 ]
             ];
         } catch (\Exception $exception) {

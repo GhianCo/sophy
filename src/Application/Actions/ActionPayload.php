@@ -22,14 +22,14 @@ class ActionPayload implements JsonSerializable
      */
     private $pagination;
 
-    private ?ActionError $error;
+    private $error;
 
     public function __construct(
         int $code = 200,
         $data = null,
         $message = null,
         $pagination = null,
-        ?ActionError $error = null
+        $error = null
     )
     {
         $this->code = $code;

@@ -24,7 +24,8 @@
         "slim/slim": "^4.9",
         "firebase/php-jwt": "^5.0",
         "vlucas/phpdotenv": "^5.1",
-        "mark-gerarts/auto-mapper-plus": "1.4"
+        "mark-gerarts/auto-mapper-plus": "1.4",
+        "davidepastore/slim-validation": "4.0"
     },
     "require-dev": {
         "ghianco/sophy-generator": "*",

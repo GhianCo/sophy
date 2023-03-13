@@ -35,6 +35,12 @@ abstract class Action
         $this->args = $args;
 
         try {
+
+            if ($this->request->getAttribute('has_errors')) {
+                $errors = $this->request->getAttribute('errors');
+                return $this->respondWithError($errors, 'Error de validaciones', 422);
+            }
+
             return $this->action();
         } catch (DomainRecordNotFoundException $e) {
             throw new HttpNotFoundException($this->request, $e->getMessage());
@@ -74,6 +80,13 @@ abstract class Action
     protected function respondWithData($data = null, $message = null, $pagination = null, int $code = 200): Response
     {
         $payload = new ActionPayload($code, $data, $message, $pagination);
+
+        return $this->respond($payload);
+    }
+
+    protected function respondWithError($error, $message = null, int $code = 200): Response
+    {
+        $payload = new ActionPayload($code, null, $message, null, $error);
 
         return $this->respond($payload);
     }

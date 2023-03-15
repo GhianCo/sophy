@@ -265,11 +265,11 @@ abstract class BaseRepositoryMysql implements BaseRepository
                 ->where($this->buildWhere());
 
             foreach ($this->getJoins() as $join) {
-                if (isset($join['interception'])) {
-                    $interception = $join['interception'] . 'Join';
-                    $selectQuery->{$interception}($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                if (isset($join['type'])) {
+                    $type = $join['type'] . 'Join';
+                    $selectQuery->{$type}($join['table'] . ' ON ' . $join['first'] . ' ' . $join['operator'] . ' ' . $join['second']);
                 } else {
-                    $selectQuery->innerJoin($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                    $selectQuery->innerJoin($join['table'] . ' ON ' . $join['first'] . ' ' . $join['operator'] . ' ' . $join['second']);
                 }
             }
 
@@ -331,7 +331,7 @@ abstract class BaseRepositoryMysql implements BaseRepository
                 ->page(1);
 
             foreach ($this->getJoins() as $join) {
-                $selectQuery->innerJoin($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                $selectQuery->innerJoin($join['table'] . ' ON ' . $join['first'] . ' ' . $join['operator'] .   ' ' . $join['second']);
             }
 
             $statement = $this->dbHandler->prepare($selectQuery);

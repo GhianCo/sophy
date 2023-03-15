@@ -19,6 +19,10 @@ class SelectQueryBuilder implements ISelectQueryBuilder
 
     private $innerJoin = [];
 
+    private $leftJoin = [];
+
+    private $rightJoin = [];
+
     private $limit = '';
 
     public function __construct(string $table, array $fields)
@@ -87,11 +91,30 @@ class SelectQueryBuilder implements ISelectQueryBuilder
         return $this;
     }
 
+    public function leftJoin(string ...$leftJoin): ISelectQueryBuilder
+    {
+        foreach ($leftJoin as $arg) {
+            $this->leftJoin[] = $arg;
+        }
+        return $this;
+    }
+
+    public function rightJoin(string ...$rightJoin): ISelectQueryBuilder
+    {
+        foreach ($rightJoin as $arg) {
+            $this->rightJoin[] = $arg;
+        }
+        return $this;
+    }
+
+
     public function __toString(): string
     {
         return 'SELECT ' . ($this->withCallFoundRows ? ' SQL_CALC_FOUND_ROWS ' : ' ') . implode(', ', $this->fields)
             . ' FROM ' . $this->table
             . ($this->innerJoin === [] ? '' : ' INNER JOIN ' . implode(' INNER JOIN ', $this->innerJoin))
+            . ($this->leftJoin === [] ? '' : ' LEFT JOIN ' . implode(' LEFT JOIN ', $this->leftJoin))
+            . ($this->rightJoin === [] ? '' : ' RIGHT JOIN ' . implode(' RIGHT JOIN ', $this->rightJoin))
             . ($this->conditions === [] ? '' : ' WHERE ' . implode(' ', $this->conditions))
             . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
             . ($this->limit == '' ? '' : $this->limit);

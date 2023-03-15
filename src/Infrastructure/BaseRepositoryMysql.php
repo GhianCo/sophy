@@ -265,7 +265,12 @@ abstract class BaseRepositoryMysql implements BaseRepository
                 ->where($this->buildWhere());
 
             foreach ($this->getJoins() as $join) {
-                $selectQuery->innerJoin($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                if (isset($join['interception'])) {
+                    $interception = $join['interception'] . 'Join';
+                    $selectQuery->{$interception}($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                } else {
+                    $selectQuery->innerJoin($join['table'] . ' ON ' . $join['table'] . '.' . $join['tablePK'] . ' = ' . $this->getTable() . '.' . $join['tablePK']);
+                }
             }
 
             foreach ($this->getOrderParams() as $op) {

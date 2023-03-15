@@ -20,10 +20,10 @@ interface ISelectQueryBuilder extends IQueryBuilder
 
     public function orderBy(string ...$order): self;
 
-    public function innerJoin(string ...$join): self;
+    public function innerJoin(string ...$innerJoin): self;
 
-    public function leftJoin(string ...$join): self;
+    public function leftJoin(string ...$leftJoin): self;
 
-    public function rightJoin(string ...$join): self;
+    public function rightJoin(string ...$rightJoin): self;
 
 }

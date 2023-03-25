@@ -342,13 +342,8 @@ abstract class BaseRepositoryMysql implements BaseRepository
             }
 
             $statement->execute();
-            $statement->setFetchMode(PDO::FETCH_ASSOC);
-            $row = $statement->fetch();
-            $class = sprintf($this->nameSpaceEntity, ucfirst($this->getTable()));
-            if ($row) {
-                return new $class($row);
-            }
-            return null;
+            $table = ucfirst($this->getTable());
+            return $statement->fetchObject(sprintf($this->nameSpaceEntity, $table));
 
         } catch (\Exception $exception) {
             throw new ConexionDBException($exception->getMessage(), 500);

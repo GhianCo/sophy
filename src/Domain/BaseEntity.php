@@ -2,20 +2,9 @@
 
 namespace Sophy\Domain;
 
-use App\Utils\Fillable;
-
 abstract class BaseEntity
 {
-    use Fillable;
-
     protected $fillable = [];
-
-    public function __construct(array $data = null)
-    {
-        if (isset($data)) {
-            $this->fill($data);
-        }
-    }
 
     public function getFillable()
     {

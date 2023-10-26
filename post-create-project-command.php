@@ -13,5 +13,4 @@ Configura tus accesos de la base de datos en: '.env'.
 
 EOF;
 
-unlink('.coveralls.yml');
 unlink('post-create-project-command.php');

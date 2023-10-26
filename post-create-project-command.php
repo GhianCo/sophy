@@ -13,7 +13,27 @@ $ cd [path-project]
 Configura tus accesos de la base de datos en: '.env'.
 
 EOF;
+$basenameDir = basename(__DIR__);
 
-replaceInFile('.env', 'sophy-framework', basename(__DIR__));
+$content = <<<EOF
+APP_NAME=Sophy
+APP_URL=localhost
+APP_ENV=prod
+APP_DOMAIN='http://localhost/$basenameDir'
+PATH_ROUTE='/$basenameDir'
+
+TIME_ZONE=America/Lima
+
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=database
+DB_USERNAME=root
+DB_PASSWORD=
+EOF;
+
+$fp = fopen($_SERVER['DOCUMENT_ROOT'] . ".env","wb");
+fwrite($fp,$content);
+fclose($fp);
 
 unlink('post-create-project-command.php');

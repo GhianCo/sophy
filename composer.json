@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "ghianco/sophy-framework": "^0.1.0"
+        "ghianco/sophy-framework": "^1.0.0"
     },
     "config": {
         "platform-check": false

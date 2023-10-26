@@ -14,6 +14,6 @@ Configura tus accesos de la base de datos en: '.env'.
 
 EOF;
 
-replaceInFile('.env', 'sophy-framework', 'pepe');
+replaceInFile('.env', 'sophy-framework', basename(__DIR__));
 
 unlink('post-create-project-command.php');

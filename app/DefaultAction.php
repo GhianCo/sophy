@@ -4,7 +4,6 @@ namespace App;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Sophy\Application\Actions\Action;
-use Sophy\Settings\SettingsInterface;
 
 class DefaultAction extends Action
 {
@@ -12,15 +11,16 @@ class DefaultAction extends Action
 
     protected function action(): Response
     {
-        $settings = $this->container->get(SettingsInterface::class);
-        $appSettings = $settings->get('app');
+        $appDomain = config('app.domain');
 
         $endpoints = [];
         $data = [
             'endpoints' => $endpoints,
             'version' => self::API_VERSION,
-            'timestamp' => time(),
+            'timestamp' => time()
         ];
         return $this->respondWithData($data, 'Data Services');
     }
 }
+
+?>

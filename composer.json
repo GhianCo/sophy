@@ -1,5 +1,7 @@
 {
     "name": "ghianco/sophy",
+    "type": "project",
+    "license": "MIT",
     "description": "Services with Slim and PHP.",
     "keywords": [
         "php",
@@ -9,7 +11,6 @@
         "router"
     ],
     "homepage": "http://www.sophy-framework.com",
-    "license": "MIT",
     "authors": [
         {
             "name": "Sophy and contributors",
@@ -18,27 +19,13 @@
         }
     ],
     "require": {
-        "ext-json": "*",
-        "php-di/php-di": "^6.3",
-        "slim/psr7": "^1.5",
-        "slim/slim": "^4.9",
-        "firebase/php-jwt": "^5.0",
-        "vlucas/phpdotenv": "^5.1",
-        "mark-gerarts/auto-mapper-plus": "1.4",
-        "davidepastore/slim-validation": "4.0"
-    },
-    "require-dev": {
-        "ghianco/sophy-generator": "*",
-        "pestphp/pest": "^1.7",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.5.11"
+        "ghianco/sophy-framework": "^0.1.0"
     },
     "config": {
         "platform-check": false
     },
     "autoload": {
         "psr-4": {
-            "Sophy\\": "src/",
             "App\\": "app/"
         }
     },

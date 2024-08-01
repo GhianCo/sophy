@@ -1,9 +1,6 @@
 <?php
 
-use App\DefaultAction;
-use Sophy\Routing\Route;
-
-Route::get('/', DefaultAction::class);
-
-Route::group('/api', function ($group) {
+use Slim\Interfaces\RouteCollectorProxyInterface as Group;
+$routesDirectory = routesDirectory();
+app()->router->group('/api', function (Group $group) use ($routesDirectory) {
 });

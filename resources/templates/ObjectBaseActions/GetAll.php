@@ -1,31 +1,25 @@
 <?php
 
-namespace App\Objectbase\Application\Actions;
+namespace App\Actions\Objectbase;
 
-use App\Objectbase\Application\Services\FindService;
+use App\Consts;
+use App\Model\Objectbase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Sophy\Application\Actions\Action;
+use Sophy\Actions\Action;
 
 class GetAll extends Action
 {
-    private $findService;
-
-    public function __construct(FindService $findService)
-    {
-        $this->findService = $findService;
-    }
-
     /**
      * {@inheritdoc}
      */
     protected function action(): Response
     {
         $queryParams = $this->request->getQueryParams();
-        $page = isset($queryParams['page']) ? $queryParams['page'] : null;
-        $perPage = isset($queryParams['perPage']) ? $queryParams['perPage'] : null;
+        $page = isset($queryParams['page']) ? (int)$queryParams['page'] : 1;
+        $perPage = isset($queryParams['perPage']) ? (int)$queryParams['perPage'] : Consts::LIMIT_ROWS_COUNT;
+        
+        $objectbase = Objectbase::paginate($perPage, $page);
 
-        $objectbase = $this->findService->getObjectbaseesByPage((int)$page, (int)$perPage);
-
-        return $this->respondWithData($objectbase['data'], 'Lista de objectbasees', $objectbase['pagination']);
+        return $this->respondWithData($objectbase->data, 'Lista de objectbase', $objectbase->pagination);
     }
 }

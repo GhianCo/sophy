@@ -1,28 +1,20 @@
 <?php
 
-namespace App\Objectbase\Application\Actions;
+namespace App\Actions\Objectbase;
 
-use App\Objectbase\Application\Services\CreateService;
+use App\Model\Objectbase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Sophy\Application\Actions\Action;
+use Sophy\Actions\Action;
 
 class Create extends Action
 {
-    private $createService;
-
-    public function __construct(CreateService $createService)
-    {
-        $this->createService = $createService;
-    }
 
     /**
      * {@inheritdoc}
      */
     protected function action(): Response
     {
-        $input = (array)$this->request->getParsedBody();
-        $objectbase = $this->createService->create($input);
-
-        return $this->respondWithData($objectbase, 'Objectbase creado con éxito');
+        $objectbase = Objectbase::create($this->getFormData());
+        return $this->respondWithData($objectbase->save(), 'Objectbase creado con éxito');
     }
 }

@@ -19,7 +19,11 @@
         }
     ],
     "require": {
-        "ghianco/sophy-framework": "^1.0.0"
+        "ghianco/sophy-core": "1.2.2",
+        "ghianco/sophy-db": "1.2.3",
+        "vlucas/phpdotenv": "5.4",
+        "firebase/php-jwt": "6.4.0",
+        "mark-gerarts/auto-mapper-plus": "1.4"
     },
     "config": {
         "platform-check": false

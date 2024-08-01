@@ -3,7 +3,7 @@
 namespace App;
 
 use Psr\Http\Message\ResponseInterface as Response;
-use Sophy\Application\Actions\Action;
+use Sophy\Actions\Action;
 
 class DefaultAction extends Action
 {
@@ -15,6 +15,7 @@ class DefaultAction extends Action
 
         $endpoints = [];
         $data = [
+            'domain' => $appDomain,
             'endpoints' => $endpoints,
             'version' => self::API_VERSION,
             'timestamp' => time()

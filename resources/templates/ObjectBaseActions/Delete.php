@@ -1,30 +1,26 @@
 <?php
 
-namespace App\Objectbase\Application\Actions;
+namespace App\Actions\Objectbase;
 
-use App\Objectbase\Application\Services\DeleteService;
+use App\Model\Objectbase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Sophy\Application\Actions\Action;
+use Sophy\Actions\Action;
+use Sophy\Exceptions\NotFoundException;
 
 class Delete extends Action
 {
-    private $deleteService;
-
-    public function __construct(DeleteService $deleteService)
-    {
-        $this->deleteService = $deleteService;
-    }
-
     /**
      * {@inheritdoc}
      */
     protected function action(): Response
     {
-        $objectbaseId = (int)$this->resolveArg('id');
-        $objectbase = $this->deleteService->delete((int)$objectbaseId);
+        $id = $this->resolveArg('id');
+        $objectbase = Objectbase::where('objectbase_id', $id)->delete();
 
-        return $this->respondWithData($objectbase, 'Objectbase eliminado con éxito');
+        if (!$objectbase) {
+            throw NotFoundException::showMessage('Objectbasee con Id #' . $id . ' no encontrado.');
+        }
+
+        return $this->respondWithData(true, 'Objectbase eliminado con éxito');
     }
 }
-
-?>

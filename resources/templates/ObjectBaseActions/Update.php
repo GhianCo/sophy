@@ -1,31 +1,19 @@
 <?php
 
-namespace App\Objectbase\Application\Actions;
+namespace App\Actions\Objectbase;
 
-use App\Objectbase\Application\Services\UpdateService;
+use App\Model\Objectbase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Sophy\Application\Actions\Action;
+use Sophy\Actions\Action;
 
 class Update extends Action
 {
-    private $updateService;
-
-    public function __construct(UpdateService $updateService)
-    {
-        $this->updateService = $updateService;
-    }
-
     /**
      * {@inheritdoc}
      */
     protected function action(): Response
     {
-        $input = (array)$this->request->getParsedBody();
-        $objectbaseId = (int)$this->resolveArg('id');
-
-        $objectbase = $this->updateService->update($input, $objectbaseId);
-
-        return $this->respondWithData($objectbase, 'Objectbase actualizado con éxito');
+        $objectbase = Objectbase::update($this->getFormData(), $this->resolveArg('id'));
+        return $this->respondWithData($objectbase->save(), 'Objectbase actualizado con éxito');
     }
-
 }

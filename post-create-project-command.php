@@ -18,7 +18,7 @@ $basenameDir = basename(__DIR__);
 $content = <<<EOF
 APP_NAME=Sophy
 APP_URL=localhost
-APP_ENV=prod
+APP_ENV=dev
 APP_DOMAIN='http://localhost/$basenameDir'
 PATH_ROUTE='/$basenameDir'
 
@@ -30,6 +30,8 @@ DB_PORT=3306
 DB_DATABASE=database
 DB_USERNAME=root
 DB_PASSWORD=
+
+JWT_SECRET_KEY=sophy
 EOF;
 
 $fp = fopen($_SERVER['DOCUMENT_ROOT'] . ".env","wb");

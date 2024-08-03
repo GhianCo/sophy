@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Actions;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Sophy\Actions\Action;

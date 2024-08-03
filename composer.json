@@ -19,8 +19,8 @@
         }
     ],
     "require": {
-        "ghianco/sophy-core": "1.2.5",
-        "ghianco/sophy-db": "1.2.6",
+        "ghianco/sophy-core": "1.2.6",
+        "ghianco/sophy-db": "1.2.7",
         "vlucas/phpdotenv": "5.4",
         "firebase/php-jwt": "6.4.0",
         "mark-gerarts/auto-mapper-plus": "1.4"

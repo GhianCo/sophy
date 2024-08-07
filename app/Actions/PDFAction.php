@@ -5,13 +5,17 @@ namespace App\Actions;
 use Psr\Http\Message\ResponseInterface as Response;
 use Sophy\Actions\Action;
 
-class ViewAction extends Action
+class PDFAction extends Action
 {
     protected function action(): Response
     {
         $queryParams = $this->request->getQueryParams();
-        $page = $queryParams['page'] ?? '';
+        $page = $queryParams['page'] ?? 'reporte';
+        $name = $queryParams['name'] ?? '';
+        $dest = $queryParams['dest'] ?? 'I';
 
-        return $this->view($page, ['title' => 'Vista dinamica']);
+        return $this->pdf($page, $name, $dest);
     }
 }
+
+?>

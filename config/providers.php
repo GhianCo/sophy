@@ -6,8 +6,7 @@ return [
         Sophy\Providers\ViewServiceProvider::class
     ],
     'runtime' => [
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\PDFServiceProvider::class
+        App\Providers\RouteServiceProvider::class
     ],
     'cli' => [
         Sophy\Providers\DatabaseDriverServiceProvider::class,

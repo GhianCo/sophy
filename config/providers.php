@@ -3,7 +3,8 @@
 return [
     'boot' => [
         Sophy\Providers\DatabaseDriverServiceProvider::class,
-        Sophy\Providers\ViewServiceProvider::class
+        Sophy\Providers\ViewServiceProvider::class,
+        Sophy\Providers\SessionStorageServiceProvider::class,
     ],
     'runtime' => [
         App\Providers\RouteServiceProvider::class
